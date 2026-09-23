@@ -1,0 +1,88 @@
+﻿@model BUA_project.Models.Reservation
+
+@{
+    ViewData["Title"] = "Assign Driver";
+}
+
+<h1>Assign Driver</h1>
+
+<div class="mb-3">
+
+    <strong>Requester:</strong>
+    @Model.User?.Name
+
+</div>
+
+<div class="mb-3">
+
+    <strong>Vehicle:</strong>
+    @Model.Vehicle?.PlateNumber
+
+</div>
+
+<div class="mb-3">
+
+    <strong>Route:</strong>
+    @Model.Origin
+    →
+    @Model.Destination
+
+</div>
+
+<div class="mb-3">
+
+    <strong>Status:</strong>
+    @Model.Status
+
+</div>
+
+
+<form asp-action="AssignDriver"
+      method="post">
+
+    <input type="hidden"
+           name="id"
+           value="@Model.ReservationId" />
+
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Select Driver
+        </label>
+
+        <select name="driverId"
+                class="form-select"
+                required>
+
+            <option value="">
+                -- Select Driver --
+            </option>
+
+            @foreach (var driver in ViewBag.Drivers)
+            {
+                <option value="@driver.DriverId">
+
+                    @driver.Name
+                    -
+                    @driver.LicenseNumber
+
+                </option>
+            }
+
+        </select>
+
+    </div>
+
+
+    <button type="submit"
+            class="btn btn-primary">
+        Assign Driver
+    </button>
+
+    <a asp-action="Index"
+           class="btn btn-secondary">
+        Back
+    </a>
+
+</form>

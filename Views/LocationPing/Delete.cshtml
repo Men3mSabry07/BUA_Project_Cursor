@@ -1,0 +1,69 @@
+﻿@model BUA_project.Models.LocationPing
+
+@{
+    ViewData["Title"] = "Delete Location Ping";
+}
+
+<h1>Delete Location Ping</h1>
+
+<h4>
+    Are you sure you want to delete this location ping?
+</h4>
+
+<dl class="row">
+
+    <dt class="col-sm-3">
+        Trip
+    </dt>
+
+    <dd class="col-sm-9">
+        Trip #@Model.TripId
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Latitude
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Latitude
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Longitude
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Longitude
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Timestamp
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Timestamp
+    </dd>
+
+</dl>
+
+
+<form asp-action="Delete"
+      method="post">
+
+    <input type="hidden"
+           asp-for="LocationPingId" />
+
+    <button type="submit"
+            class="btn btn-danger">
+        Delete
+    </button>
+
+    <a asp-action="Index"
+           class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

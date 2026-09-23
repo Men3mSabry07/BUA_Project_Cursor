@@ -1,0 +1,77 @@
+﻿@model IEnumerable<BUA_project.Models.LocationPing>
+
+@{
+    ViewData["Title"] = "Location Pings";
+}
+
+<h1>Location Pings</h1>
+
+<p>
+    <a asp-action="Create"
+           class="btn btn-primary">
+        Add Location Ping
+    </a>
+</p>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Trip</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Timestamp</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var ping in Model)
+        {
+            <tr>
+
+                <td>
+                    #@ping.TripId
+                </td>
+
+                <td>
+                    @ping.Latitude
+                </td>
+
+                <td>
+                    @ping.Longitude
+                </td>
+
+                <td>
+                    @ping.Timestamp
+                </td>
+
+                <td>
+
+                    <a asp-action="Details"
+                           asp-route-id="@ping.LocationPingId"
+                           class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-action="Edit"
+                           asp-route-id="@ping.LocationPingId"
+                           class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                           asp-route-id="@ping.LocationPingId"
+                           class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

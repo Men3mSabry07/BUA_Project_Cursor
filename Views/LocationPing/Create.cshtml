@@ -1,0 +1,121 @@
+﻿@model BUA_project.Models.LocationPing
+
+@{
+    ViewData["Title"] = "Create Location Ping";
+}
+
+<h1>Create Location Ping</h1>
+
+<form asp-action="Create" method="post">
+
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger">
+    </div>
+
+
+    <div class="mb-3">
+
+        <label asp-for="Latitude"
+               class="form-label">
+            Latitude
+        </label>
+
+        <input asp-for="Latitude"
+               type="number"
+               step="any"
+               class="form-control" />
+
+        <span asp-validation-for="Latitude"
+              class="text-danger">
+        </span>
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label asp-for="Longitude"
+               class="form-label">
+            Longitude
+        </label>
+
+        <input asp-for="Longitude"
+               type="number"
+               step="any"
+               class="form-control" />
+
+        <span asp-validation-for="Longitude"
+              class="text-danger">
+        </span>
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label asp-for="Timestamp"
+               class="form-label">
+            Timestamp
+        </label>
+
+        <input asp-for="Timestamp"
+               type="datetime-local"
+               class="form-control" />
+
+        <span asp-validation-for="Timestamp"
+              class="text-danger">
+        </span>
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label asp-for="TripId"
+               class="form-label">
+            Trip
+        </label>
+
+        <select asp-for="TripId"
+                class="form-select">
+
+            <option value="">
+                -- Select Trip --
+            </option>
+
+            @foreach (var trip in ViewBag.Trips)
+            {
+                <option value="@trip.TripId">
+                    Trip #@trip.TripId
+                </option>
+            }
+
+        </select>
+
+        <span asp-validation-for="TripId"
+              class="text-danger">
+        </span>
+
+    </div>
+
+
+    <button type="submit"
+            class="btn btn-primary">
+        Create
+    </button>
+
+    <a asp-action="Index"
+           class="btn btn-secondary">
+        Back
+    </a>
+
+</form>
+
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync(
+            "_ValidationScriptsPartial");
+    }
+}

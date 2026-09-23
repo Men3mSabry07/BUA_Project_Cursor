@@ -1,0 +1,81 @@
+﻿@model IEnumerable<BUA_project.Models.Driver>
+
+@{
+    ViewData["Title"] = "Drivers";
+}
+
+<h1>Drivers</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        Add New Driver
+    </a>
+</p>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>License Number</th>
+            <th>Qualification Status</th>
+            <th>Qualification Valid Until</th>
+            <th>User</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var driver in Model)
+        {
+            <tr>
+
+                <td>
+                    @driver.Name
+                </td>
+
+                <td>
+                    @driver.LicenseNumber
+                </td>
+
+                <td>
+                    @driver.QualificationStatus
+                </td>
+
+                <td>
+                    @driver.QualificationValidUntil.ToString("yyyy-MM-dd")
+                </td>
+
+                <td>
+                    @driver.User?.Name
+                </td>
+
+                <td>
+
+                    <a asp-action="Details"
+                       asp-route-id="@driver.DriverId"
+                       class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@driver.DriverId"
+                       class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@driver.DriverId"
+                       class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

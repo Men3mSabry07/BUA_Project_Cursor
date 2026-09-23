@@ -1,0 +1,100 @@
+﻿@model BUA_project.Models.Trip
+
+@{
+    ViewData["Title"] = "Complete Trip";
+}
+
+<h1>Complete Trip</h1>
+
+<form asp-action="Complete"
+      method="post">
+
+    <input type="hidden"
+           name="id"
+           value="@Model.TripId" />
+
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            End Odometer
+        </label>
+
+        <input name="endOdometer"
+               type="number"
+               step="0.01"
+               class="form-control"
+               required />
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Actual Distance (KM)
+        </label>
+
+        <input name="actualDistanceKm"
+               type="number"
+               step="0.01"
+               class="form-control"
+               required />
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Actual Fuel (Liters)
+        </label>
+
+        <input name="actualFuelLiters"
+               type="number"
+               step="0.01"
+               class="form-control"
+               required />
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Actual Fuel Cost
+        </label>
+
+        <input name="actualFuelCost"
+               type="number"
+               step="0.01"
+               class="form-control"
+               required />
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Incident Notes
+        </label>
+
+        <textarea name="incidentNotes"
+                  class="form-control">
+        </textarea>
+
+    </div>
+
+
+    <button type="submit"
+            class="btn btn-success">
+        Complete Trip
+    </button>
+
+    <a asp-action="Index"
+           class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

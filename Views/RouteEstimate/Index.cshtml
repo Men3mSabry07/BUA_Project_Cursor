@@ -1,0 +1,96 @@
+@model IEnumerable<BUA_project.Models.RouteEstimate>
+
+    @{
+    ViewData["Title"] = "Route Estimates";
+    }
+
+    <h1>Route Estimates</h1>
+
+    <p>
+        <a asp-action="Create"
+           class="btn btn-primary">
+            Create New Route Estimate
+        </a>
+    </p>
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Distance</th>
+                <th>Duration</th>
+                <th>Provider</th>
+                <th>Trip</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var route in Model)
+        {
+            <tr>
+
+                <td>
+                    @route.Origin
+                </td>
+
+                <td>
+                    @route.Destination
+                </td>
+
+                <td>
+                    @route.Distance km
+                </td>
+
+                <td>
+                    @route.Duration
+                </td>
+
+                <td>
+                    @route.ProviderSnapshot
+                </td>
+
+                <td>
+                    @if (route.Trip != null)
+                    {
+                    <span>
+                        Trip #@route.Trip.TripId
+                    </span>
+                    }
+                    else
+                    {
+                    <span>Not assigned</span>
+                    }
+                </td>
+
+                <td>
+
+                    <a asp-action="Details"
+                       asp-route-id="@route.RouteEstimateId"
+                       class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@route.RouteEstimateId"
+                       class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@route.RouteEstimateId"
+                       class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+        </tbody>
+
+    </table>

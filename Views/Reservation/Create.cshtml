@@ -1,0 +1,283 @@
+﻿@model Reservation
+
+@{
+    ViewData["Title"] = "Create Reservation";
+}
+
+<h1>Create Reservation</h1>
+
+<form asp-action="Create" method="post">
+
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger">
+    </div>
+
+
+    <!-- Start Date -->
+
+    <div class="mb-3">
+
+        <label asp-for="StartDateTime"
+               class="form-label">
+        </label>
+
+        <input asp-for="StartDateTime"
+               type="datetime-local"
+               class="form-control" />
+
+        <span asp-validation-for="StartDateTime"
+              class="text-danger">
+        </span>
+
+    </div>
+
+
+    <!-- End Date -->
+
+    <div class="mb-3">
+
+        <label asp-for="EndDateTime"
+               class="form-label">
+        </label>
+
+        <input asp-for="EndDateTime"
+               type="datetime-local"
+               class="form-control" />
+
+        <span asp-validation-for="EndDateTime"
+              class="text-danger">
+        </span>
+
+    </div>
+
+
+    <!-- Origin -->
+
+    <div class="mb-3">
+
+        <label asp-for="Origin"
+               class="form-label">
+        </label>
+
+        <input asp-for="Origin"
+               class="form-control" />
+
+        <span asp-validation-for="Origin"
+              class="text-danger">
+        </span>
+
+    </div>
+
+
+    <!-- Destination -->
+
+    <div class="mb-3">
+
+        <label asp-for="Destination"
+               class="form-label">
+        </label>
+
+        <input asp-for="Destination"
+               class="form-control" />
+
+        <span asp-validation-for="Destination"
+              class="text-danger">
+        </span>
+
+    </div>
+
+
+    <!-- Passengers -->
+
+    <div class="mb-3">
+
+        <label asp-for="Passengers"
+               class="form-label">
+        </label>
+
+        <input asp-for="Passengers"
+               type="number"
+               class="form-control" />
+
+        <span asp-validation-for="Passengers"
+              class="text-danger">
+        </span>
+
+    </div>
+
+
+    <!-- Load -->
+
+    <div class="mb-3">
+
+        <label asp-for="Load"
+               class="form-label">
+        </label>
+
+        <input asp-for="Load"
+               type="number"
+               class="form-control" />
+
+        <span asp-validation-for="Load"
+              class="text-danger">
+        </span>
+
+    </div>
+
+
+    <!-- Purpose -->
+
+    <div class="mb-3">
+
+        <label asp-for="Purpose"
+               class="form-label">
+        </label>
+
+        <textarea asp-for="Purpose"
+                      class="form-control">
+        </textarea>
+
+            <span asp-validation-for="Purpose"
+                  class="text-danger">
+            </span>
+
+        </div>
+
+
+        <!-- Status -->
+
+        <div class="mb-3">
+
+            <label asp-for="Status"
+                   class="form-label">
+            </label>
+
+            <input asp-for="Status"
+                   class="form-control" />
+
+            <span asp-validation-for="Status"
+                  class="text-danger">
+            </span>
+
+        </div>
+
+
+        <!-- Vehicle -->
+
+        <div class="mb-3">
+
+            <label asp-for="VehicleId"
+                   class="form-label">
+                Vehicle
+            </label>
+
+            <select asp-for="VehicleId"
+                    class="form-select">
+
+                <option value="">
+                    -- Select Vehicle --
+                </option>
+
+                @foreach (var vehicle in ViewBag.Vehicles)
+                {
+                    <option value="@vehicle.VehicleId">
+                        @vehicle.PlateNumber -
+                        @vehicle.Brand
+                        @vehicle.Model
+                    </option>
+                }
+
+            </select>
+
+            <span asp-validation-for="VehicleId"
+                  class="text-danger">
+            </span>
+
+        </div>
+
+
+        <!-- User -->
+
+        <div class="mb-3">
+
+            <label asp-for="UserId"
+                   class="form-label">
+                Requester
+            </label>
+
+            <select asp-for="UserId"
+                    class="form-select">
+
+                <option value="">
+                    -- Select User --
+                </option>
+
+                @foreach (var user in ViewBag.Users)
+                {
+                    <option value="@user.UserId">
+                        @user.Name
+                    </option>
+                }
+
+            </select>
+
+            <span asp-validation-for="UserId"
+                  class="text-danger">
+            </span>
+
+        </div>
+
+
+        <!-- Driver -->
+
+        <div class="mb-3">
+
+            <label asp-for="DriverId"
+                   class="form-label">
+                Driver
+            </label>
+
+            <select asp-for="DriverId"
+                    class="form-select">
+
+                <option value="">
+                    -- No Driver --
+                </option>
+
+                @foreach (var driver in ViewBag.Drivers)
+                {
+                    <option value="@driver.DriverId">
+                        @driver.DriverId
+                    </option>
+                }
+
+            </select>
+
+            <span asp-validation-for="DriverId"
+                  class="text-danger">
+            </span>
+
+        </div>
+
+
+        <button type="submit"
+                class="btn btn-primary">
+            Create
+        </button>
+
+        <a asp-action="Index"
+               class="btn btn-secondary">
+            Back
+        </a>
+
+    </form>
+
+
+    @section Scripts {
+
+        @{
+            await Html.RenderPartialAsync(
+                "_ValidationScriptsPartial");
+        }
+
+    }

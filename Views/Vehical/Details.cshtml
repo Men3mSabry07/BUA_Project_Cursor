@@ -1,0 +1,138 @@
+﻿@model Vehicle
+
+@{
+    ViewData["Title"] = "Vehicle Details";
+}
+
+<h1>Vehicle Details</h1>
+
+<div>
+
+    <dl class="row">
+
+        <dt class="col-sm-3">
+            Plate Number
+        </dt>
+
+        <dd class="col-sm-9">
+            @Model.PlateNumber
+        </dd>
+
+
+        <dt class="col-sm-3">
+            Brand
+        </dt>
+
+        <dd class="col-sm-9">
+            @Model.Brand
+        </dd>
+
+
+        <dt class="col-sm-3">
+            Model
+        </dt>
+
+        <dd class="col-sm-9">
+            @Model.Model
+        </dd>
+
+
+        <dt class="col-sm-3">
+            Type
+        </dt>
+
+        <dd class="col-sm-9">
+            @Model.Type
+        </dd>
+
+
+        <dt class="col-sm-3">
+            Seats
+        </dt>
+
+        <dd class="col-sm-9">
+            @Model.Seats
+        </dd>
+
+
+        <dt class="col-sm-3">
+            Fuel Type
+        </dt>
+
+        <dd class="col-sm-9">
+            @Model.FuelType
+        </dd>
+
+
+        <dt class="col-sm-3">
+            Status
+        </dt>
+
+        <dd class="col-sm-9">
+            @Model.Status
+        </dd>
+
+
+        <dt class="col-sm-3">
+            Year
+        </dt>
+
+        <dd class="col-sm-9">
+            @Model.Year
+        </dd>
+
+
+        <dt class="col-sm-3">
+            Specification
+        </dt>
+
+        <dd class="col-sm-9">
+
+            @if (Model.VehicleSpecification != null)
+            {
+                <div>
+                    <strong>Nominal L/100Km:</strong>
+                    @Model.VehicleSpecification.NominalLPer100Km
+                </div>
+
+                <div>
+                    <strong>Tank Capacity:</strong>
+                    @Model.VehicleSpecification.TankCapacity
+                </div>
+
+                <div>
+                    <strong>Accessibility:</strong>
+                    @Model.VehicleSpecification.Accessibility
+                </div>
+
+                <div>
+                    <strong>Transmission:</strong>
+                    @Model.VehicleSpecification.Transmission
+                </div>
+
+                <div>
+                    <strong>Allowed Load:</strong>
+                    @Model.VehicleSpecification.AllowedLoad
+                </div>
+            }
+
+        </dd>
+
+    </dl>
+
+</div>
+
+<div>
+
+    <a asp-action="Edit"
+           asp-route-id="@Model.VehicleId"
+           class="btn btn-warning">
+        Edit
+    </a>
+
+    <a asp-action="Index"
+           class="btn btn-secondary">
+        Back
+    </a>
+
+</div>

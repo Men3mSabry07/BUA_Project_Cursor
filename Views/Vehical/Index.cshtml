@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Vehicle>
+
+@{
+    ViewData["Title"] = "Vehicles";
+}
+
+<h1>Vehicles</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        Add New Vehicle
+    </a>
+</p>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Plate Number</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Type</th>
+            <th>Seats</th>
+            <th>Fuel Type</th>
+            <th>Status</th>
+            <th>Year</th>
+            <th>Specification</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var vehicle in Model)
+        {
+            <tr>
+
+                <td>@vehicle.PlateNumber</td>
+
+                <td>@vehicle.Brand</td>
+
+                <td>@vehicle.Model</td>
+
+                <td>@vehicle.Type</td>
+
+                <td>@vehicle.Seats</td>
+
+                <td>@vehicle.FuelType</td>
+
+                <td>@vehicle.Status</td>
+
+                <td>@vehicle.Year</td>
+
+                <td>
+                    @vehicle.VehicleSpecificationId
+                </td>
+
+                <td>
+
+                    <a asp-action="Details"
+                           asp-route-id="@vehicle.VehicleId"
+                           class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-action="Edit"
+                           asp-route-id="@vehicle.VehicleId"
+                           class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                           asp-route-id="@vehicle.VehicleId"
+                           class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

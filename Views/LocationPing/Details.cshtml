@@ -1,0 +1,66 @@
+﻿@model BUA_project.Models.LocationPing
+
+@{
+    ViewData["Title"] = "Location Ping Details";
+}
+
+<h1>Location Ping Details</h1>
+
+<dl class="row">
+
+    <dt class="col-sm-3">
+        Location Ping ID
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.LocationPingId
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Trip
+    </dt>
+
+    <dd class="col-sm-9">
+        Trip #@Model.TripId
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Latitude
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Latitude
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Longitude
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Longitude
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Timestamp
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Timestamp
+    </dd>
+
+</dl>
+
+<a asp-action="Edit"
+       asp-route-id="@Model.LocationPingId"
+       class="btn btn-warning">
+    Edit
+</a>
+
+<a asp-action="Index"
+       class="btn btn-secondary">
+    Back
+</a>

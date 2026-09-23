@@ -1,0 +1,98 @@
+@model BUA_project.Models.RouteEstimate
+
+@{
+    ViewData["Title"] = "Route Estimate Details";
+}
+
+<h1>Route Estimate Details</h1>
+
+<dl class="row">
+
+    <dt class="col-sm-3">
+        Route Estimate ID
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.RouteEstimateId
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Origin
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Origin
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Destination
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Destination
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Distance
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Distance km
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Duration
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Duration
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Provider Snapshot
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.ProviderSnapshot
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Trip
+    </dt>
+
+    <dd class="col-sm-9">
+
+        @if (Model.Trip != null)
+        {
+        <span>
+            Trip #@Model.Trip.TripId
+        </span>
+        }
+        else
+        {
+        <span>
+            Not assigned to a Trip
+        </span>
+        }
+
+    </dd>
+
+</dl>
+
+
+<a asp-action="Edit"
+   asp-route-id="@Model.RouteEstimateId"
+   class="btn btn-warning">
+    Edit
+</a>
+
+<a asp-action="Index"
+   class="btn btn-secondary">
+    Back
+</a>

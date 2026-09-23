@@ -1,0 +1,138 @@
+@model BUA_project.Models.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Create New Account";
+}
+
+<h2>Create New Account</h2>
+
+<form asp-controller="Account" asp-action="Register" method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <h5>Choose Account Type</h5>
+
+    <div class="d-flex gap-3 mb-4">
+
+        <button type="submit"
+                name="AccountType"
+                value="User"
+                class="btn btn-primary">
+            Requester
+        </button>
+
+        <button type="submit"
+                name="AccountType"
+                value="Driver"
+                class="btn btn-secondary">
+            Driver
+        </button>
+
+    </div>
+
+</form>
+
+@if (Model.AccountType == "User")
+{
+<hr />
+
+<h4>Requester Registration</h4>
+
+<form asp-controller="Account" asp-action="Register" method="post">
+
+    <input type="hidden" asp-for="AccountType" value="User" />
+
+    <div class="form-group mb-3">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="ConfirmPassword"></label>
+        <input asp-for="ConfirmPassword" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Create Account
+    </button>
+
+</form>
+}
+
+@if (Model.AccountType == "Driver")
+{
+<hr />
+
+<h4>Driver Registration</h4>
+
+<form asp-controller="Account" asp-action="Register" method="post">
+
+    <input type="hidden" asp-for="AccountType" value="Driver" />
+
+    <div class="form-group mb-3">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="LicenseNumber">License Number</label>
+        <input asp-for="LicenseNumber" class="form-control" />
+        <span asp-validation-for="LicenseNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="QualificationStatus">Qualification Status</label>
+        <input asp-for="QualificationStatus" class="form-control" />
+        <span asp-validation-for="QualificationStatus" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="QualificationValidUntil">
+            Qualification Valid Until
+        </label>
+        <input asp-for="QualificationValidUntil"
+               type="date"
+               class="form-control" />
+        <span asp-validation-for="QualificationValidUntil"
+              class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="ConfirmPassword"></label>
+        <input asp-for="ConfirmPassword" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Create Account
+    </button>
+
+</form>
+}

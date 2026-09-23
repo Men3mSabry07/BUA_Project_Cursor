@@ -1,0 +1,112 @@
+﻿@model IEnumerable<BUA_project.Models.Trip>
+
+@{
+    ViewData["Title"] = "Trips";
+}
+
+<h1>Trips</h1>
+
+<p>
+    <a asp-action="Create"
+       class="btn btn-primary">
+        Create New Trip
+    </a>
+</p>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+
+        <tr>
+            <th>Reservation</th>
+            <th>Started At</th>
+            <th>Completed At</th>
+            <th>Distance</th>
+            <th>Fuel</th>
+            <th>Fuel Cost</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach (var trip in Model)
+        {
+            <tr>
+
+                <td>
+                    #@trip.ReservationId
+                </td>
+
+                <td>
+                    @trip.StartedAt
+                </td>
+
+                <td>
+                    @trip.CompletedAt
+                </td>
+
+                <td>
+                    @trip.ActualDistanceKm km
+                </td>
+
+                <td>
+                    @trip.ActualFuelLiters L
+                </td>
+
+                <td>
+                    @trip.ActualFuelCost
+                </td>
+
+                <td>
+                    @trip.Status
+                </td>
+
+                <td>
+
+                    <a asp-action="Details"
+                       asp-route-id="@trip.TripId"
+                       class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    @if (trip.Status == "Scheduled")
+                    {
+                        <a asp-action="Start"
+                           asp-route-id="@trip.TripId"
+                           class="btn btn-success btn-sm">
+                            Start
+                        </a>
+                    }
+
+                    @if (trip.Status == "InProgress")
+                    {
+                        <a asp-action="Complete"
+                           asp-route-id="@trip.TripId"
+                           class="btn btn-primary btn-sm">
+                            Complete
+                        </a>
+                    }
+
+                    <a asp-action="Edit"
+                       asp-route-id="@trip.TripId"
+                       class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@trip.TripId"
+                       class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

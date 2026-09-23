@@ -1,0 +1,125 @@
+﻿@model IEnumerable<Reservation>
+
+@{
+    ViewData["Title"] = "Reservations";
+}
+
+<h1>Reservations</h1>
+
+<p>
+    <a asp-action="Create"
+           class="btn btn-primary">
+        Create New Reservation
+    </a>
+</p>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+
+            <th>Start</th>
+
+            <th>End</th>
+
+            <th>Origin</th>
+
+            <th>Destination</th>
+
+            <th>Passengers</th>
+
+            <th>Load</th>
+
+            <th>Purpose</th>
+
+            <th>Status</th>
+
+            <th>Vehicle</th>
+
+            <th>User</th>
+
+            <th>Driver</th>
+
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var reservation in Model)
+        {
+            <tr>
+
+                <td>
+                    @reservation.StartDateTime
+                </td>
+
+                <td>
+                    @reservation.EndDateTime
+                </td>
+
+                <td>
+                    @reservation.Origin
+                </td>
+
+                <td>
+                    @reservation.Destination
+                </td>
+
+                <td>
+                    @reservation.Passengers
+                </td>
+
+                <td>
+                    @reservation.Load
+                </td>
+
+                <td>
+                    @reservation.Purpose
+                </td>
+
+                <td>
+                    @reservation.Status
+                </td>
+
+                <td>
+                    @reservation.VehicleId
+                </td>
+
+                <td>
+                    @reservation.UserId
+                </td>
+
+                <td>
+                    @reservation.DriverId
+                </td>
+
+                <td>
+
+                    <a asp-action="Details"
+                           asp-route-id="@reservation.ReservationId"
+                           class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-action="Edit"
+                           asp-route-id="@reservation.ReservationId"
+                           class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                           asp-route-id="@reservation.ReservationId"
+                           class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

@@ -1,0 +1,186 @@
+@model BUA_project.Models.Reservation
+
+@{
+    ViewData["Title"] = "Fuel Prediction";
+}
+
+<div class="container mt-4">
+
+    <h1 class="mb-4">Fuel Consumption Prediction</h1>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h4>
+                Reservation #@Model.ReservationId
+            </h4>
+        </div>
+
+        <div class="card-body">
+
+            <p class="text-muted">
+                The following data will be sent to the
+                Fuel Prediction AI model.
+            </p>
+
+            <hr />
+
+            <dl class="row">
+
+                <!-- Vehicle Type -->
+
+                <dt class="col-sm-5">
+                    Vehicle Type
+                </dt>
+
+                <dd class="col-sm-7">
+                    @Model.Vehicle?.Type
+                </dd>
+
+
+                <!-- Vehicle -->
+
+                <dt class="col-sm-5">
+                    Vehicle
+                </dt>
+
+                <dd class="col-sm-7">
+
+                    @Model.Vehicle?.Brand
+                    @Model.Vehicle?.Model
+
+                </dd>
+
+
+                <!-- Passengers -->
+
+                <dt class="col-sm-5">
+                    Passengers
+                </dt>
+
+                <dd class="col-sm-7">
+                    @Model.Passengers
+                </dd>
+
+
+                <!-- Distance -->
+
+                <dt class="col-sm-5">
+                    Distance
+                </dt>
+
+                <dd class="col-sm-7">
+
+                    @if (Model.Trip?.RouteEstimate != null)
+                    {
+                    @Model.Trip.RouteEstimate.Distance
+                    <span>km</span>
+                    }
+                    else
+                    {
+                    <span class="text-danger">
+                        Not available
+                    </span>
+                    }
+
+                </dd>
+
+
+                <!-- Duration -->
+
+                <dt class="col-sm-5">
+                    Duration
+                </dt>
+
+                <dd class="col-sm-7">
+
+                    @if (Model.Trip?.RouteEstimate != null)
+                    {
+                    @Model.Trip.RouteEstimate.Duration.TotalMinutes
+                    <span>minutes</span>
+                    }
+                    else
+                    {
+                    <span class="text-danger">
+                        Not available
+                    </span>
+                    }
+
+                </dd>
+
+
+                <!-- Nominal Fuel Consumption -->
+
+                <dt class="col-sm-5">
+                    Nominal Fuel Consumption
+                </dt>
+
+                <dd class="col-sm-7">
+
+                    @if (Model.Vehicle?.VehicleSpecification != null)
+                    {
+                    @Model.Vehicle.VehicleSpecification.NominalLPer100Km
+                    <span>L / 100 km</span>
+                    }
+                    else
+                    {
+                    <span class="text-danger">
+                        Not available
+                    </span>
+                    }
+
+                </dd>
+
+            </dl>
+
+            <hr />
+
+            <div class="alert alert-info">
+
+                <strong>How does it work?</strong>
+
+                <p class="mb-0 mt-2">
+                    The system will send the reservation,
+                    vehicle and route information to the
+                    AI model. The AI model will return the
+                    predicted fuel consumption.
+                </p>
+
+            </div>
+
+
+            <!-- Predict Button -->
+
+            <form asp-controller="FuelEstimate"
+                  asp-action="PredictFuel"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden"
+                       name="reservationId"
+                       value="@Model.ReservationId" />
+
+                <button type="submit"
+                        class="btn btn-success">
+
+                    Predict Fuel Consumption
+
+                </button>
+
+                <a asp-controller="Reservation"
+                   asp-action="Details"
+                   asp-route-id="@Model.ReservationId"
+                   class="btn btn-secondary">
+
+                    Back
+
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

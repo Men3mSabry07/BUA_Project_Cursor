@@ -1,0 +1,24 @@
+# Visual Studio / VS Code
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build output
+[Oo]bj/
+[Bb]in/
+[Dd]ebug/
+[Rr]elease/
+
+# NuGet
+*.nupkg
+packages/
+*.snupkg
+
+# ASP.NET Core
+appsettings.Development.json
+
+# Local tooling
+*.log

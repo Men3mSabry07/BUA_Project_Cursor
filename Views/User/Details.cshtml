@@ -1,0 +1,89 @@
+@model BUA_project.Models.User
+
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<h1>User Details</h1>
+
+<dl class="row">
+
+    <dt class="col-sm-3">
+        User ID
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.UserId
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Name
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Name
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Email
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Email
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Role
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Role
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Reservations
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Reservations?.Count
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Driver
+    </dt>
+
+    <dd class="col-sm-9">
+
+        @if (Model.Driver != null)
+        {
+        <span>
+            Driver #@Model.Driver.DriverId
+        </span>
+        }
+        else
+        {
+        <span>
+            Not a Driver
+        </span>
+        }
+
+    </dd>
+
+</dl>
+
+
+<a asp-action="Edit"
+   asp-route-id="@Model.UserId"
+   class="btn btn-warning">
+    Edit
+</a>
+
+<a asp-action="Index"
+   class="btn btn-secondary">
+    Back
+</a>

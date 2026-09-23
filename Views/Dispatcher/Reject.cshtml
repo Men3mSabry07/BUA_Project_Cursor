@@ -1,0 +1,61 @@
+﻿@model BUA_project.Models.Reservation
+
+@{
+    ViewData["Title"] = "Reject Reservation";
+}
+
+<h1>Reject Reservation</h1>
+
+<h4>
+    Are you sure you want to reject this reservation?
+</h4>
+
+<div class="mb-3">
+
+    <strong>Requester:</strong>
+    @Model.User?.Name
+
+</div>
+
+<div class="mb-3">
+
+    <strong>Vehicle:</strong>
+    @Model.Vehicle?.PlateNumber
+
+</div>
+
+<div class="mb-3">
+
+    <strong>Route:</strong>
+    @Model.Origin
+    →
+    @Model.Destination
+
+</div>
+
+<div class="mb-3">
+
+    <strong>Purpose:</strong>
+    @Model.Purpose
+
+</div>
+
+
+<form asp-action="Reject"
+      method="post">
+
+    <input type="hidden"
+           name="id"
+           value="@Model.ReservationId" />
+
+    <button type="submit"
+            class="btn btn-danger">
+        Reject
+    </button>
+
+    <a asp-action="Index"
+           class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

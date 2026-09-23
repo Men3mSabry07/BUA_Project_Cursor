@@ -1,0 +1,48 @@
+﻿@model BUA_project.Models.Trip
+
+@{
+    ViewData["Title"] = "Start Trip";
+}
+
+<h1>Start Trip</h1>
+
+<h4>
+    Are you sure you want to start this trip?
+</h4>
+
+<div class="mb-3">
+
+    <strong>Trip:</strong>
+    #@Model.TripId
+
+</div>
+
+<div class="mb-3">
+
+    <strong>Route:</strong>
+
+    @Model.Reservation?.Origin
+    →
+    @Model.Reservation?.Destination
+
+</div>
+
+
+<form asp-action="Start"
+      method="post">
+
+    <input type="hidden"
+           name="id"
+           value="@Model.TripId" />
+
+    <button type="submit"
+            class="btn btn-success">
+        Start Trip
+    </button>
+
+    <a asp-action="Index"
+           class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

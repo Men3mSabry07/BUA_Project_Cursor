@@ -1,0 +1,108 @@
+﻿@model IEnumerable<BUA_project.Models.Reservation>
+
+@{
+    ViewData["Title"] = "Dispatcher";
+}
+
+<h1>Pending Reservations</h1>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Requester</th>
+            <th>Vehicle</th>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Passengers</th>
+            <th>Load</th>
+            <th>Purpose</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var reservation in Model)
+        {
+            <tr>
+
+                <td>
+                    @reservation.User?.Name
+                </td>
+
+                <td>
+                    @reservation.Vehicle?.PlateNumber
+                </td>
+
+                <td>
+                    @reservation.Origin
+                </td>
+
+                <td>
+                    @reservation.Destination
+                </td>
+
+                <td>
+                    @reservation.StartDateTime
+                </td>
+
+                <td>
+                    @reservation.EndDateTime
+                </td>
+
+                <td>
+                    @reservation.Passengers
+                </td>
+
+                <td>
+                    @reservation.Load
+                </td>
+
+                <td>
+                    @reservation.Purpose
+                </td>
+
+                <td>
+
+                    <a asp-action="Details"
+                       asp-route-id="@reservation.ReservationId"
+                       class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-action="Approve"
+                       asp-route-id="@reservation.ReservationId"
+                       class="btn btn-success btn-sm">
+                        Approve
+                    </a>
+
+                    <a asp-action="Reject"
+                       asp-route-id="@reservation.ReservationId"
+                       class="btn btn-danger btn-sm">
+                        Reject
+                    </a>
+
+                </td>
+
+            </tr>
+
+            <tr>
+                @if (reservation.Status == "Approved"
+        && reservation.DriverId == null)
+                {
+                    <a asp-action="AssignDriver"
+                           asp-route-id="@reservation.ReservationId"
+                           class="btn btn-primary btn-sm">
+                        Assign Driver
+                    </a>
+                }
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+

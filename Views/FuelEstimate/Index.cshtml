@@ -1,0 +1,85 @@
+@model IEnumerable<BUA_project.Models.FuelEstimate>
+
+    @{
+    ViewData["Title"] = "Fuel Estimates";
+    }
+
+    <div class="container mt-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Fuel Estimates</h1>
+        </div>
+
+        @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            No fuel estimates have been created yet.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+
+            <table class="table table-striped table-bordered">
+
+                <thead>
+                    <tr>
+                        <th>Reservation</th>
+                        <th>Vehicle</th>
+                        <th>Predicted Fuel</th>
+                        <th>Fuel Price / Liter</th>
+                        <th>Estimated Cost</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var estimate in Model)
+                    {
+                    <tr>
+
+                        <td>
+                            #@estimate.ReservationId
+                        </td>
+
+                        <td>
+                            @estimate.Reservation?.Vehicle?.Brand
+                            @estimate.Reservation?.Vehicle?.Model
+                        </td>
+
+                        <td>
+                            @estimate.PredictedFuel.ToString("0.00") L
+                        </td>
+
+                        <td>
+                            @estimate.FuelPricePerLiter.ToString("0.00") EGP
+                        </td>
+
+                        <td>
+                            <strong>
+                                @estimate.EstimatedCost.ToString("0.00") EGP
+                            </strong>
+                        </td>
+
+                        <td>
+
+                            <a asp-action="Details"
+                               asp-route-id="@estimate.FuelEstimateId"
+                               class="btn btn-primary btn-sm">
+                                Details
+                            </a>
+
+                        </td>
+
+                    </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+    }
+
+    </div>

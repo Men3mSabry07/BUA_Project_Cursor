@@ -1,0 +1,75 @@
+@model BUA_project.Models.User
+
+@{
+    ViewData["Title"] = "Delete User";
+}
+
+<h1>Delete User</h1>
+
+<h4>
+    Are you sure you want to delete this user?
+</h4>
+
+<div class="alert alert-warning">
+    Deleting a user may affect related reservations
+    and driver information.
+</div>
+
+
+<dl class="row">
+
+    <dt class="col-sm-3">
+        User ID
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.UserId
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Name
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Name
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Email
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Email
+    </dd>
+
+
+    <dt class="col-sm-3">
+        Role
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Role
+    </dd>
+
+</dl>
+
+
+<form asp-action="Delete"
+      method="post">
+
+    <input type="hidden"
+           asp-for="UserId" />
+
+    <button type="submit"
+            class="btn btn-danger">
+        Delete
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>
